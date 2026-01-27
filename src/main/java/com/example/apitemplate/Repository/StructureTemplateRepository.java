@@ -22,14 +22,15 @@ public class StructureTemplateRepository {
         readData();
     }
 
-    private void addStructure(StructureTemplate structureToAdd){
+    public String addStructure(StructureTemplate structureToAdd){
         try{
             structureToAdd.setId(generateUniqueId());
         } catch (IllegalStateException e) {
             throw new RuntimeException(e);
         }
         structures.add(structureToAdd);
-        structureId++;
+        writeData();
+        return structureToAdd.getId();
     }
 
     public void addStructuresFromJSON(String jsonAsString){
@@ -38,7 +39,6 @@ public class StructureTemplateRepository {
         for(StructureTemplate structureTemplate: newStructures){
             addStructure(structureTemplate);
         }
-        writeData();
     }
 
     public List<StructureTemplate> getStructures(){

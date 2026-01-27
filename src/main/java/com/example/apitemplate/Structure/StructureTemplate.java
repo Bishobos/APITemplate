@@ -1,5 +1,12 @@
 package com.example.apitemplate.Structure;
 
+import com.example.apitemplate.Response.StructureTemplateGetResponse;
+import com.example.apitemplate.Response.StructureTemplatePostResponse;
+import com.example.apitemplate.Response.ValidGetResponse;
+import com.example.apitemplate.Response.ValidPostResponse;
+import tools.jackson.core.type.TypeReference;
+
+
 public class StructureTemplate implements ValidStructure {
     private boolean idExists;
     private String id; //structure id needs to exist
@@ -27,7 +34,18 @@ public class StructureTemplate implements ValidStructure {
         if(!idExists){
             this.id = id;
         }
-        else throw new IllegalStateException();
+        else throw new IllegalStateException("Id already exists.");
 
     }
+
+    @Override
+    public Class<? extends ValidGetResponse> getGetResponseType(){
+        return StructureTemplateGetResponse.getResponseClass();
+    } //ValidGetResponse r = structureTemplate.getGetResponseType().getDeclaredConstructor().newInstance()
+
+    @Override
+    public Class<? extends ValidPostResponse> getPostResponseType(){
+        return StructureTemplatePostResponse.getResponseClass();
+    }
+
 }

@@ -21,4 +21,8 @@ public class StructureTemplateService {
     public StructureTemplate findStructureById(String id){
         return repository.findStructureById(id);
     }
+
+    public String addStructure(StructureTemplate structureTemplate){
+        return repository.addStructure(structureTemplate);
+    }
 }

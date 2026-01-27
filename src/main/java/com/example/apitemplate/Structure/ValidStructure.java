@@ -1,4 +1,10 @@
 package com.example.apitemplate.Structure;
 
+import com.example.apitemplate.Response.ValidGetResponse;
+import com.example.apitemplate.Response.ValidPostResponse;
+import tools.jackson.core.type.TypeReference;
+
 public interface ValidStructure {
+    public Class<? extends ValidGetResponse> getGetResponseType();
+    public Class<? extends ValidPostResponse> getPostResponseType();
 }

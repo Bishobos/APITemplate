@@ -1,15 +1,15 @@
 package com.example.apitemplate.Controller;
 
 import com.example.apitemplate.Response.StructureTemplateGetResponse;
-import com.example.apitemplate.Response.ValidStructureTemplateResponse;
+import com.example.apitemplate.Response.StructureTemplatePostResponse;
+import com.example.apitemplate.Response.ValidGetResponse;
+import com.example.apitemplate.Response.*;
 import com.example.apitemplate.Service.StructureTemplateService;
 import com.example.apitemplate.Structure.StructureTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,11 @@ public class StructureTemplateController {
     }
 
     @GetMapping
-    public ResponseEntity<ValidStructureTemplateResponse> getStructures(){
+    public ResponseEntity<ValidGetResponse> getStructures(){
         return new ResponseEntity<>(new StructureTemplateGetResponse(service.getStructures()), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ValidStructureTemplateResponse> getStructureById(@PathVariable String id){
+    public ResponseEntity<ValidGetResponse> getStructureById(@PathVariable String id){
         List<StructureTemplate> structureTemplateList = new ArrayList<>();
         structureTemplateList.add(service.findStructureById(id));
         if(!structureTemplateList.isEmpty()){
@@ -36,4 +36,11 @@ public class StructureTemplateController {
         }
         return new ResponseEntity<>(new StructureTemplateGetResponse(structureTemplateList), HttpStatus.NOT_FOUND);
     }
+    @PostMapping
+    public ResponseEntity<ValidPostResponse> createStructureTemplate(@RequestBody StructureTemplate structureTemplate){
+        String addedId = service.addStructure(structureTemplate);
+        return new ResponseEntity<>(new StructureTemplatePostResponse(addedId), HttpStatus.CREATED);
+    }
+
+
 }
