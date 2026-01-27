@@ -1,9 +1,6 @@
 package com.example.apitemplate.Structure;
 
-import com.example.apitemplate.Response.StructureTemplateGetResponse;
-import com.example.apitemplate.Response.StructureTemplatePostResponse;
-import com.example.apitemplate.Response.ValidGetResponse;
-import com.example.apitemplate.Response.ValidPostResponse;
+import com.example.apitemplate.Response.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,6 +44,14 @@ public class StructureTemplate implements ValidStructure {
     @Override
     public Class<? extends ValidPostResponse> validPostResponseType(){
         return StructureTemplatePostResponse.getResponseClass();
+    }
+    @Override
+    public Class<? extends ValidDeleteResponse> validDeleteResponseType(){
+        return StructureTemplateDeleteResponse.getResponseClass();
+    }
+    @Override
+    public Class<? extends ValidPutResponse> validPutResponseType(){
+        return StructureTemplatePutResponse.getResponseClass();
     }
 
     @Override

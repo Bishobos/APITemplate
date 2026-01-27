@@ -1,7 +1,6 @@
 package com.example.apitemplate.Repository;
 
 import com.example.apitemplate.Structure.StructureTemplate;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.stereotype.Repository;
@@ -14,7 +13,6 @@ import java.util.*;
 @Repository
 public class StructureTemplateRepository {
     private List<StructureTemplate> structures = new ArrayList<>();
-    private int structureId = 1;
     private List<String> existingIds = new ArrayList<>();
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -69,10 +67,38 @@ public class StructureTemplateRepository {
 
     private String generateUniqueId(){
         String newId;
+        if(existingIds.isEmpty()){
+            return UUID.randomUUID().toString().replaceAll("-", "");
+        }
         do {
             newId = UUID.randomUUID().toString().replaceAll("-", "");
         } while (existingIds.contains(newId));
         existingIds.add(newId);
         return newId;
     }
+
+    public boolean changeStructureById(StructureTemplate newStructureTemplate){
+        for (int i = 0; i < structures.size(); i++) {
+            if (structures.get(i).getId().equals(newStructureTemplate.getId())) {
+                structures.set(i, newStructureTemplate);
+                existingIds.remove(structures.get(i).getId());
+                writeData();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeStructureById(StructureTemplate structureTemplate){
+        for(StructureTemplate template: structures){
+            if(template.getId().equals(structureTemplate.getId())){
+                structures.remove(template);
+                existingIds.remove(template.getId());
+                writeData();
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

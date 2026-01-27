@@ -43,6 +43,25 @@ public class StructureTemplateController {
         StructureTemplatePostResponse response = new StructureTemplatePostResponse(addedId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+    @PutMapping("/change")
+    public ResponseEntity<ValidPutResponse> changeStructureTemplate(@RequestBody StructureTemplate structureTemplate){
+        boolean changed = service.changeStructureById(structureTemplate);
+        StructureTemplatePutResponse response = new StructureTemplatePutResponse(structureTemplate.getId());
+        if(changed){
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<ValidDeleteResponse> deleteStructureTemplate(@RequestBody StructureTemplate structureTemplate){
+        boolean changed = service.removeStructureById(structureTemplate);
+        StructureTemplateDeleteResponse response = new StructureTemplateDeleteResponse(structureTemplate.getId());
+        if(changed){
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 
 }

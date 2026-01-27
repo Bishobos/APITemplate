@@ -26,4 +26,11 @@ public class StructureTemplateService {
         String id = repository.addStructure(structureTemplate);
         return id;
     }
+
+    public boolean changeStructureById(StructureTemplate structureTemplate){
+        return repository.changeStructureById(structureTemplate);
+    }
+    public boolean removeStructureById(StructureTemplate structureTemplate){
+        return repository.removeStructureById(structureTemplate);
+    }
 }
