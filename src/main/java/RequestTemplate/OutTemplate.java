@@ -16,10 +16,11 @@ public class OutTemplate {
         String url = "http://localhost:8080/StructureTemplate/change";
         /*
         When using Post, do not try to send ID
+        valid methods are {post, put, delete}
          */
         StructureTemplate dataToSend = new StructureTemplate( "sample text");
         try {
-            requestOut(url, dataToSend, "post");
+            requestOut(dataToSend, "post");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -28,10 +29,10 @@ public class OutTemplate {
     }
 
 
-    public static void requestOut(String url, ValidStructure structureTemplate, String method) throws URISyntaxException{
+    public static void requestOut(ValidStructure structureTemplate, String method) throws URISyntaxException{
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            URL obj = new URI(url).toURL();
+            URL obj = new URI(setURL(method)).toURL();
 
             HttpURLConnection connection = (HttpURLConnection)obj.openConnection();
             connection.setRequestMethod(method.toUpperCase());
@@ -72,11 +73,19 @@ public class OutTemplate {
         return switch (method) {
             case "post" -> StructureTemplatePostResponse.getResponseClass();
             case "put" -> StructureTemplatePutResponse.getResponseClass();
-            case "Delete" -> StructureTemplateDeleteResponse.getResponseClass();
+            case "delete" -> StructureTemplateDeleteResponse.getResponseClass();
             default -> null;
         };
         }
-
+    private static String setURL(String method){
+        String url = "http://localhost:8080/StructureTemplate/";
+        return switch (method) {
+            case "post" -> url + "write";
+            case "put" -> url + "change";
+            case "delete" -> url + "remove";
+            default -> null;
+        };
+    }
     }
 
 

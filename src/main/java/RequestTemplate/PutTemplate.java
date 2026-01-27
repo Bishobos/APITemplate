@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+@Deprecated
 public class PutTemplate {
     public static void main(String[] args) {
         String url = "http://localhost:8080/StructureTemplate/change";
