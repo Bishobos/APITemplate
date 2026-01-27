@@ -14,10 +14,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-/*
-TODO:add classes for response formatting
- */
-
 public class PostTemplate {
     public static void main(String[] args) {
         String url = "http://localhost:8080/StructureTemplate/write";
@@ -35,6 +31,7 @@ public class PostTemplate {
 
     public static void post(String url, StructureTemplate structureTemplate) throws URISyntaxException{
         ObjectMapper objectMapper = new ObjectMapper();
+        String s = objectMapper.writeValueAsString(structureTemplate);
         try{
             URL obj = new URI(url).toURL();
 
@@ -42,7 +39,6 @@ public class PostTemplate {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");
-            System.out.println(objectMapper.writeValueAsString(structureTemplate));
             try(DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())){
                 outputStream.writeBytes(objectMapper.writeValueAsString(structureTemplate));
                 outputStream.flush();

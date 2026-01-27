@@ -23,6 +23,7 @@ public class StructureTemplateService {
     }
 
     public String addStructure(StructureTemplate structureTemplate){
-        return repository.addStructure(structureTemplate);
+        String id = repository.addStructure(structureTemplate);
+        return id;
     }
 }

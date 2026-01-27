@@ -23,11 +23,12 @@ public class StructureTemplateController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/read")
     public ResponseEntity<ValidGetResponse> getStructures(){
-        return new ResponseEntity<>(new StructureTemplateGetResponse(service.getStructures()), HttpStatus.OK);
+        StructureTemplateGetResponse response = new StructureTemplateGetResponse(service.getStructures());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/read/{id}")
     public ResponseEntity<ValidGetResponse> getStructureById(@PathVariable String id){
         List<StructureTemplate> structureTemplateList = new ArrayList<>();
         structureTemplateList.add(service.findStructureById(id));
@@ -39,7 +40,8 @@ public class StructureTemplateController {
     @PostMapping("/write")
     public ResponseEntity<ValidPostResponse> createStructureTemplate(@RequestBody StructureTemplate structureTemplate){
         String addedId = service.addStructure(structureTemplate);
-        return new ResponseEntity<>(new StructureTemplatePostResponse(addedId), HttpStatus.CREATED);
+        StructureTemplatePostResponse response = new StructureTemplatePostResponse(addedId);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 
