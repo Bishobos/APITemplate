@@ -1,5 +1,5 @@
 package com.example.apitemplate.Response;
 
-public interface ValidPostResponse {
+public interface ValidPostResponse extends ValidOutResponse {
 
 }

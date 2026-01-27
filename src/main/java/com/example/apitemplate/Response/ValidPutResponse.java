@@ -1,4 +1,4 @@
 package com.example.apitemplate.Response;
 
-public interface ValidPutResponse {
+public interface ValidPutResponse extends ValidOutResponse {
 }
