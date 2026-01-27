@@ -4,6 +4,7 @@ import com.example.apitemplate.Structure.StructureTemplate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import org.springframework.stereotype.Repository;
+import tools.jackson.core.JacksonException;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
@@ -26,11 +27,21 @@ public class StructureTemplateRepository {
     }
 
     public String addStructure(StructureTemplate structureToAdd){
-        String newId = generateUniqueId();
-        StructureTemplate structureWithId = new StructureTemplate(newId, structureToAdd.getText());
-        structures.add(structureWithId);
+        String id;
+        if(structureToAdd.getId() == null){
+            System.out.println("gege");
+            id = generateUniqueId();
+            StructureTemplate structureWithId = new StructureTemplate(id, structureToAdd.getText());
+            structures.add(structureWithId);
+            existingIds.add(id);
+            writeData();
+            return id;
+        }
+        id = structureToAdd.getId();
+        structures.add(structureToAdd);
+        existingIds.add(id);
         writeData();
-        return structureWithId.getId();
+        return id;
     }
 
     public void addStructuresFromJSON(String jsonAsString){
@@ -60,9 +71,14 @@ public class StructureTemplateRepository {
         objectMapper.writeValue(new File("src/main/java/com/example/apitemplate/Repository/repository.json"), this);
     }
     private void readData(){
-        StructureTemplateRepository temp = objectMapper.readValue(new File("src/main/java/com/example/apitemplate/Repository/repository.json"), this.getClass());
-        this.structures= temp.getStructures();
-        this.existingIds= temp.getExistingIds();
+        try {
+            StructureTemplateRepository temp = objectMapper.readValue(new File("src/main/java/com/example/apitemplate/Repository/repository.json"), this.getClass());
+            this.structures= temp.getStructures();
+            this.existingIds= temp.getExistingIds();
+        } catch (JacksonException e) {
+            System.out.println("Storage is empty.");
+        }
+
     }
 
     private String generateUniqueId(){
