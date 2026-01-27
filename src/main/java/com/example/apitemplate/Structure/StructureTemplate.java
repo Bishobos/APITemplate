@@ -2,20 +2,20 @@ package com.example.apitemplate.Structure;
 
 public class StructureTemplate implements ValidStructure {
     private boolean idExists;
-    private int id; //structure id needs to exist
+    private String id; //structure id needs to exist
     private final String text; //template attribute
 
     public StructureTemplate(String text) {
         this.text = text;
     }
 
-    public StructureTemplate(int id, String text) {
+    public StructureTemplate(String id, String text) {
         this.id = id;
         this.text = text;
         this.idExists = true;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -23,7 +23,7 @@ public class StructureTemplate implements ValidStructure {
         return text;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         if(!idExists){
             this.id = id;
         }

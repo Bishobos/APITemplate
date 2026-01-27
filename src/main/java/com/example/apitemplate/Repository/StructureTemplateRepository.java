@@ -8,11 +8,14 @@ import tools.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Repository
 public class StructureTemplateRepository {
     private List<StructureTemplate> structures = new ArrayList<>();
     private int structureId = 1;
+    private static Set<String> existingIds;
     ObjectMapper objectMapper = new ObjectMapper();
 
     public StructureTemplateRepository(){
@@ -21,7 +24,7 @@ public class StructureTemplateRepository {
 
     private void addStructure(StructureTemplate structureToAdd){
         try{
-            structureToAdd.setId(structureId);
+            structureToAdd.setId(generateUniqueId());
         } catch (IllegalStateException e) {
             throw new RuntimeException(e);
         }
@@ -41,10 +44,11 @@ public class StructureTemplateRepository {
     public List<StructureTemplate> getStructures(){
         return structures;
     }
+    public static Set<String> getExistingIds(){return existingIds;}
 
-    public StructureTemplate findStructureById(int id){
+    public StructureTemplate findStructureById(String id){
         for(StructureTemplate structureTemplate: structures){
-            if(id == structureTemplate.getId()){
+            if(id.equals(structureTemplate.getId())){
                 return structureTemplate;
             }
         }
@@ -56,5 +60,13 @@ public class StructureTemplateRepository {
     }
     private void readData(){
         objectMapper.readValue(new File("src/main/java/com/example/apitemplate/Repository/repository.json"), this.getClass());
+    }
+
+    private String generateUniqueId(){
+        String newId;
+        do {
+            newId = UUID.randomUUID().toString();
+        } while( existingIds.contains(newId));
+        return newId;
     }
 }

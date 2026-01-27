@@ -18,7 +18,7 @@ public class StructureTemplateService {
         return repository.getStructures();
     }
 
-    public StructureTemplate findStructureById(int id){
+    public StructureTemplate findStructureById(String id){
         return repository.findStructureById(id);
     }
 }

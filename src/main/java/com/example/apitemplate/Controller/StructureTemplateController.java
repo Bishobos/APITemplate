@@ -28,7 +28,7 @@ public class StructureTemplateController {
         return new ResponseEntity<>(new StructureTemplateGetResponse(service.getStructures()), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ValidStructureTemplateResponse> getStructureById(@PathVariable int id){
+    public ResponseEntity<ValidStructureTemplateResponse> getStructureById(@PathVariable String id){
         List<StructureTemplate> structureTemplateList = new ArrayList<>();
         structureTemplateList.add(service.findStructureById(id));
         if(!structureTemplateList.isEmpty()){
