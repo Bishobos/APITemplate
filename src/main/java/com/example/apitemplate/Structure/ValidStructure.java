@@ -5,6 +5,6 @@ import com.example.apitemplate.Response.ValidPostResponse;
 import tools.jackson.core.type.TypeReference;
 
 public interface ValidStructure {
-    public Class<? extends ValidGetResponse> getGetResponseType();
-    public Class<? extends ValidPostResponse> getPostResponseType();
+    public Class<? extends ValidGetResponse> validGetResponseType();
+    public Class<? extends ValidPostResponse> validPostResponseType();
 }

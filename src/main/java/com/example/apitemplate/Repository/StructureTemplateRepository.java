@@ -19,7 +19,7 @@ public class StructureTemplateRepository {
     ObjectMapper objectMapper = new ObjectMapper();
 
     public StructureTemplateRepository(){
-        readData();
+
     }
 
     public String addStructure(StructureTemplate structureToAdd){

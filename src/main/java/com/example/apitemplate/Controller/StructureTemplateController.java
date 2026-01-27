@@ -36,7 +36,7 @@ public class StructureTemplateController {
         }
         return new ResponseEntity<>(new StructureTemplateGetResponse(structureTemplateList), HttpStatus.NOT_FOUND);
     }
-    @PostMapping
+    @PostMapping("/write")
     public ResponseEntity<ValidPostResponse> createStructureTemplate(@RequestBody StructureTemplate structureTemplate){
         String addedId = service.addStructure(structureTemplate);
         return new ResponseEntity<>(new StructureTemplatePostResponse(addedId), HttpStatus.CREATED);

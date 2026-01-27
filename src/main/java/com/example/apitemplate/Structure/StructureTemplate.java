@@ -4,11 +4,13 @@ import com.example.apitemplate.Response.StructureTemplateGetResponse;
 import com.example.apitemplate.Response.StructureTemplatePostResponse;
 import com.example.apitemplate.Response.ValidGetResponse;
 import com.example.apitemplate.Response.ValidPostResponse;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import tools.jackson.core.type.TypeReference;
 
 
 public class StructureTemplate implements ValidStructure {
     private boolean idExists;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String id; //structure id needs to exist
     private final String text; //template attribute
 
@@ -39,12 +41,12 @@ public class StructureTemplate implements ValidStructure {
     }
 
     @Override
-    public Class<? extends ValidGetResponse> getGetResponseType(){
+    public Class<? extends ValidGetResponse> validGetResponseType(){
         return StructureTemplateGetResponse.getResponseClass();
     } //ValidGetResponse r = structureTemplate.getGetResponseType().getDeclaredConstructor().newInstance()
 
     @Override
-    public Class<? extends ValidPostResponse> getPostResponseType(){
+    public Class<? extends ValidPostResponse> validPostResponseType(){
         return StructureTemplatePostResponse.getResponseClass();
     }
 
