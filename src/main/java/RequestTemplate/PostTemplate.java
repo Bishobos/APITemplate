@@ -2,6 +2,7 @@ package RequestTemplate;
 
 import com.example.apitemplate.Response.ValidPostResponse;
 import com.example.apitemplate.Structure.StructureTemplate;
+import com.example.apitemplate.Structure.ValidStructure;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import tools.jackson.databind.ObjectMapper;
 
@@ -29,7 +30,7 @@ public class PostTemplate {
     }
 
 
-    public static void post(String url, StructureTemplate structureTemplate) throws URISyntaxException{
+    public static void post(String url, ValidStructure structureTemplate) throws URISyntaxException{
         ObjectMapper objectMapper = new ObjectMapper();
         String s = objectMapper.writeValueAsString(structureTemplate);
         try{

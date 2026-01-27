@@ -49,4 +49,11 @@ public class StructureTemplate implements ValidStructure {
         return StructureTemplatePostResponse.getResponseClass();
     }
 
+    @Override
+    public String toString() {
+        return "StructureTemplate{" +
+                "id='" + id + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

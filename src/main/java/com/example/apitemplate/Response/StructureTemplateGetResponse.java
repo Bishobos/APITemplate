@@ -3,6 +3,7 @@ package com.example.apitemplate.Response;
 import com.example.apitemplate.Structure.StructureTemplate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,12 +30,16 @@ public class StructureTemplateGetResponse implements ValidGetResponse {
         return StructureTemplateGetResponse.class;
     }
 
-
     @Override
     public String toString() {
-        return "StructureTemplateGetResponse{" +
+        StringBuilder stringBuilder = new StringBuilder();
+        for (StructureTemplate structureTemplate: responseStructures){
+            stringBuilder.append(structureTemplate.toString());
+            stringBuilder.append("\n");
+        }
+        return "StructureTemplateGetResponse{\n" +
                 "createdDateTime=" + createdDateTime +
-                ", responseStructures=" + responseStructures +
+                ", \nresponseStructures=\n" + stringBuilder +
                 '}';
     }
 }
