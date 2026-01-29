@@ -18,11 +18,9 @@ import java.util.List;
 @RequestMapping("/StructureTemplate")
 public class StructureTemplateController {
     private StructureTemplateService service;
-    private List<String> existingIds;
 
     public StructureTemplateController(StructureTemplateService service) {
         this.service = service;
-        this.existingIds = service.getExistingIds();
     }
 
     @GetMapping("/read")
@@ -41,7 +39,7 @@ public class StructureTemplateController {
     }
     @PostMapping("/write")
     public ResponseEntity<ValidPostResponse> createStructureTemplate(@RequestBody StructureTemplate structureTemplate){
-        if(structureTemplate.getId() != null && existingIds.contains(structureTemplate.getId())){
+        if(structureTemplate.getId() != null && service.getExistingIds().contains(structureTemplate.getId())){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         String addedId;
