@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class OutTemplate {
     public static void main(String[] args) {
-        String url = "http://localhost:8080/StructureTemplate/change";
+        String url = "http://localhost:8080/StructureTemplate";
         /*
         When using Post, do not try to send ID
         valid methods are {post, put, delete}
@@ -83,7 +83,7 @@ public class OutTemplate {
             case "post" -> url + "write";
             case "put" -> url + "change";
             case "delete" -> url + "remove";
-            default -> null;
+            default -> url;
         };
     }
     }
