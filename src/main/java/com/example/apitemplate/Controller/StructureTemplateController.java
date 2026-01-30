@@ -23,12 +23,12 @@ public class StructureTemplateController {
         this.service = service;
     }
 
-    @GetMapping("/read")
+    @GetMapping
     public ResponseEntity<ValidGetResponse> getStructures(){
         StructureTemplateGetResponse response = new StructureTemplateGetResponse(service.getStructures());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @GetMapping("/read/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ValidGetResponse> getStructureById(@PathVariable String id){
         List<StructureTemplate> structureTemplateList = new ArrayList<>();
         structureTemplateList.add(service.findStructureById(id));
@@ -37,7 +37,7 @@ public class StructureTemplateController {
         }
         return new ResponseEntity<>(new StructureTemplateGetResponse(structureTemplateList), HttpStatus.NOT_FOUND);
     }
-    @PostMapping("/write")
+    @PostMapping
     public ResponseEntity<ValidPostResponse> createStructureTemplate(@RequestBody StructureTemplate structureTemplate){
         if(structureTemplate.getId() != null && service.getExistingIds().contains(structureTemplate.getId())){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -48,7 +48,7 @@ public class StructureTemplateController {
         response = new StructureTemplatePostResponse(addedId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-    @PutMapping("/change")
+    @PutMapping
     public ResponseEntity<ValidPutResponse> changeStructureTemplate(@RequestBody StructureTemplate structureTemplate){
         boolean changed = service.changeStructureById(structureTemplate);
         StructureTemplatePutResponse response = new StructureTemplatePutResponse(structureTemplate.getId());
@@ -58,7 +58,7 @@ public class StructureTemplateController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/remove")
+    @DeleteMapping
     public ResponseEntity<ValidDeleteResponse> deleteStructureTemplate(@RequestBody StructureTemplate structureTemplate){
         boolean changed = service.removeStructureById(structureTemplate);
         StructureTemplateDeleteResponse response = new StructureTemplateDeleteResponse(structureTemplate.getId());

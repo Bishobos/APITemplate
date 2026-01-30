@@ -29,7 +29,6 @@ public class StructureTemplateRepository {
     public String addStructure(StructureTemplate structureToAdd){
         String id;
         if(structureToAdd.getId() == null){
-            System.out.println("gege");
             id = generateUniqueId();
             StructureTemplate structureWithId = new StructureTemplate(id, structureToAdd.getText());
             structures.add(structureWithId);

@@ -32,7 +32,7 @@ public class OutTemplate {
     public static void requestOut(ValidStructure structureTemplate, String method) throws URISyntaxException{
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            URL obj = new URI(setURL(method)).toURL();
+            URL obj = new URI("http://localhost:8080/StructureTemplate").toURL();
 
             HttpURLConnection connection = (HttpURLConnection)obj.openConnection();
             connection.setRequestMethod(method.toUpperCase());
@@ -77,15 +77,7 @@ public class OutTemplate {
             default -> null;
         };
         }
-    private static String setURL(String method){
-        String url = "http://localhost:8080/StructureTemplate/";
-        return switch (method) {
-            case "post" -> url + "write";
-            case "put" -> url + "change";
-            case "delete" -> url + "remove";
-            default -> url;
-        };
-    }
+
     }
 
 

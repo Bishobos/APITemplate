@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class GetTemplate {
     public static void main(String[] args) {
-        String url = "http://localhost:8080/StructureTemplate/read";
+        String url = "http://localhost:8080/StructureTemplate";
         try {
             Get(url, StructureTemplateGetResponse.getResponseClass());
         } catch (URISyntaxException e) {
