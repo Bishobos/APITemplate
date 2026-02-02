@@ -3,13 +3,13 @@ body {
     background-color: #f6f6f6;
     color: rebeccapurple;
 }
-#main-header {
-    background-color: rebeccapurple;
-    color: white;
-    padding: 1em;
-}
 p {
     padding: 20px;
     border: 5px solid rebeccapurple;
     margin: 50px;
+}
+#main-header {
+    background-color: rebeccapurple;
+    color: white;
+    padding: 1em;
 }

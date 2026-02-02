@@ -11,6 +11,10 @@ import tools.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.*;
 
+/*
+TODO: change from list to map with Id as key
+ */
+
 @Repository
 public class StructureTemplateRepository {
     private List<StructureTemplate> structures = new ArrayList<>();
