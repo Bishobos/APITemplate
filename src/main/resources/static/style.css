@@ -1,7 +1,7 @@
 body {
     font-family: Verdana, sans-serif;
-    background-color: #f6f6f6;
-    color: rebeccapurple;
+    background-color: #ffffff;
+    color: #000000;
 }
 p {
     padding: 20px;
@@ -9,7 +9,7 @@ p {
     margin: 50px;
 }
 #main-header {
-    background-color: rebeccapurple;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
     padding: 1em;
 }
