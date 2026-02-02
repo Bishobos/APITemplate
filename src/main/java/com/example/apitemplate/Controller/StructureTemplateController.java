@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/StructureTemplate")
 public class StructureTemplateController {
     private StructureTemplateService service;
