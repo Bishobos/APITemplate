@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/StructureTemplate")
 public class StructureTemplateController {
-    private StructureTemplateService service;
+    private final StructureTemplateService service;
 
     public StructureTemplateController(StructureTemplateService service) {
         this.service = service;

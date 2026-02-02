@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class StructureTemplateService {
-    private StructureTemplateRepository repository;
+    private final StructureTemplateRepository repository;
 
     public StructureTemplateService(StructureTemplateRepository repository) {
         this.repository = repository;

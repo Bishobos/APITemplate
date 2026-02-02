@@ -47,13 +47,6 @@ public class StructureTemplateRepository {
         return id;
     }
 
-    public void addStructuresFromJSON(String jsonAsString){
-        List<StructureTemplate> newStructures = objectMapper.readValue(jsonAsString,
-                new TypeReference<List<StructureTemplate>>() {});
-        for(StructureTemplate structureTemplate: newStructures){
-            addStructure(structureTemplate);
-        }
-    }
     @JsonGetter("structures")
     public List<StructureTemplate> getStructures(){
         return structures;
