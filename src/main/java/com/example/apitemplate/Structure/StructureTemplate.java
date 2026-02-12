@@ -20,6 +20,7 @@ public class StructureTemplate implements ValidStructure {
         this.id = id;
         this.text = text;
     }
+    public StructureTemplate(){}
 
     public String getId() {
         return id;

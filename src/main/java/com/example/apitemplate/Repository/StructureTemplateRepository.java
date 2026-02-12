@@ -102,8 +102,10 @@ public class StructureTemplateRepository {
     }
 
     public boolean removeStructureById(StructureTemplate structureTemplate){
+        System.out.println("gooober");
         for(StructureTemplate template: structures){
             if(template.getId().equals(structureTemplate.getId())){
+                System.out.println("tata");
                 structures.remove(template);
                 existingIds.remove(template.getId());
                 writeData();
