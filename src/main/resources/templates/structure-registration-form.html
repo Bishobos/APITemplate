@@ -11,8 +11,12 @@
     <label>text</label>
     <input type="text" th:field="*{text}">
     <br>
-    <button type="submit">Register</button>
+    <button type="submit" style="float:left">Register</button>
 </form>
-
+<form action="#" th:action="@{/display}">
+    <label>
+        <button type="submit" style="float:left">   Cancel</button>
+    </label>
+</form>
 </body>
 </html>
