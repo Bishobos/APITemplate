@@ -8,6 +8,7 @@
 <body>
 
 Are you sure you wish to delete
+<span th:text="${structureId}"></span>
 
 <form action="#" th:action="@{/display/remove}" th:object="${structure}" th:method="delete">
     <input type="hidden" th:field="*{id}"/>
