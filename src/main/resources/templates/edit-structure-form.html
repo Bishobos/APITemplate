@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body>
+
+<p>Please input new text for <span th:text="${structureId}"></span>
+</p>
+
+<form action="#" th:action="@{/display/edit/{structureId}(structureId=${structure.id})}"
+      th:object="${structure}" th:method="put">
+    <label>New text</label>
+    <input type="text" th:field="*{text}">
+    <br>
+    <button type="submit" style="float:left">Submit change</button>
+</form>
+<form action="#" th:action="@{/display}">
+    <button type="submit" style="float:left">   Chancel change</button>
+</form>
+
+
+</body>
+</html>

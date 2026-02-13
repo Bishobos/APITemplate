@@ -115,4 +115,17 @@ public class StructureTemplateRepository {
         return false;
     }
 
+    public boolean removeStructureById(String structureId){
+        for(StructureTemplate template: structures){
+            if(template.getId().equals(structureId)){
+                structures.remove(template);
+                existingIds.remove(template.getId());
+                writeData();
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

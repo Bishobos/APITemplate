@@ -36,6 +36,23 @@ public class FrontTemplateController {
         return "redirect:/display";
     }
 
+    @GetMapping("/edit/{structureId}")
+    public String editStructure(@PathVariable String structureId, Model model){
+        StructureTemplate structure = service.findStructureById(structureId);
+        if(structure==null){
+            throw new IllegalArgumentException("invalid Id");
+        }
+        model.addAttribute("structure", structure);
+        return "edit-structure-form";
+    }
+
+    @PutMapping("/edit/{structureId}")
+    public String edit(@ModelAttribute StructureTemplate structureTemplate, @PathVariable String structureId){
+        StructureTemplate newStructure = new StructureTemplate(structureId, structureTemplate.getText());
+        service.changeStructureById(newStructure);
+        return "redirect:/display";
+    }
+
     @GetMapping("/remove/{structureId}")
     public String removeStructure(@PathVariable String structureId, Model model){
         StructureTemplate structure = service.findStructureById(structureId);
@@ -43,15 +60,12 @@ public class FrontTemplateController {
             throw new IllegalArgumentException("invalid Id");
         }
         model.addAttribute("structure", structure);
-        System.out.println(structure.getId());
         return "delete-structure";
     }
 
-    @DeleteMapping("/remove")
-    public String remove(@ModelAttribute StructureTemplate structureTemplate){
-        System.out.println(structureTemplate.getId());
-        System.out.println(structureTemplate.getText());
-        service.removeStructureById(structureTemplate);
+    @DeleteMapping("/remove/{structureId}")
+    public String remove(@PathVariable String structureId){
+        service.removeStructureById(structureId);
         return"redirect:/display";
     }
 

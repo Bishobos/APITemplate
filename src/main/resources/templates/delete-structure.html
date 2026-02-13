@@ -4,18 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Remove structure</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+
 </head>
 <body>
 
 Are you sure you wish to delete
 <span th:text="${structureId}"></span>
 
-<form action="#" th:action="@{/display/remove}" th:object="${structure}" th:method="delete">
-    <input type="hidden" th:field="*{id}"/>
-    <input type="hidden" th:field="*{text}"/>
-    <button type="submit">Yes</button>
+
+<form action="#" th:action="@{/display/remove/{structureId}(structureId=${structure.id})}"
+      th:object="${structure}" th:method="delete">
+    <button type="submit" style="float:left">Yes</button>
 </form>
-<a th:href="@{/display}">no</a>
+<form action="#" th:action="@{/display}">
+    <button type="submit" style="float:left">   No</button>
+</form>
 
 </body>
 </html>

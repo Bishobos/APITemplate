@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Default Display</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+
 </head>
 <body>
 <h1>Structures</h1>
@@ -16,7 +18,8 @@
 
         <td th:text="${structure.id}"></td>
         <td th:text="${structure.text}"></td>
-        <td><a th:href="@{/display/remove/{structureId}(structureId=${structure.id})}">delete</a></td>
+        <td><a th:href="@{/display/edit/{structureId}(structureId=${structure.id})}" th:class="button">Edit</a></td>
+        <td><a th:href="@{/display/remove/{structureId}(structureId=${structure.id})}" th:class="button">Delete</a></td>
     </tr>
 </table>
 

@@ -33,6 +33,9 @@ public class StructureTemplateService {
     public boolean removeStructureById(StructureTemplate structureTemplate){
         return repository.removeStructureById(structureTemplate);
     }
+    public boolean removeStructureById(String structureId){
+        return repository.removeStructureById(structureId);
+    }
     public List<String> getExistingIds(){
         return repository.getExistingIds();
     }
